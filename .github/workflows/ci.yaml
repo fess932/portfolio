@@ -15,4 +15,6 @@ jobs:
 
       - name: Deploy with Nomad
         uses: docker://hashicorp/levant:latest
+
+      - name: Run levant
       - run: levant deploy web-service.hcl
