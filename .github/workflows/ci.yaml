@@ -1,0 +1,20 @@
+name: ci
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v1
+
+      - name: Deploy with Nomad
+        uses: qazz92/nomad-deploy
+        with:
+#          token: ${{ secrets.YOUR_NOMAD_SECRET }}
+          address: feziv.com:4646
+          job: web-service.hcl
+          config: path/to/your/levant/config/file
