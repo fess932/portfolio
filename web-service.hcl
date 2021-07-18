@@ -3,6 +3,10 @@ job "feziv" {
 
 	type = "service"
 
+	parameterized {
+		payload       = "optional"
+	}
+
 	group "default" {
 		network { 
 			port "feziv" {
