@@ -1,13 +1,7 @@
 job "feziv" {
 	datacenters = ["dc1"]
 
-	type = "batch"
-
-//	type = "batch"
-
-	parameterized {
-		payload       = "optional"
-	}
+	type = "service"
 
 	group "default" {
 		network { 
