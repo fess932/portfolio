@@ -6,15 +6,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      NOMAD_ADDR: feziv.com:4646
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v1
+        uses: actions/checkout@v2
 
       - name: Deploy with Nomad
-        uses: qazz92/nomad-deploy@v1
-        with:
-#          token: ${{ secrets.YOUR_NOMAD_SECRET }}
-          address: feziv.com:4646
-          job: web-service.hcl
-          config: path/to/your/levant/config/file
+        uses: docker://hashicorp/levant:latest
+      - run: levant deploy public
