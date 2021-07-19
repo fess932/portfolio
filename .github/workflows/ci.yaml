@@ -13,7 +13,6 @@ jobs:
         uses: actions/checkout@v2
 
       - name: set up Docker Buildx
-        id: buildx
         uses: docker/setup-buildx-action@v1
 
       - name: build and deploy master image to ghcr.io
@@ -29,15 +28,6 @@ jobs:
             --build-arg GIT_BRANCH=${ref} \
             --platform linux/amd64 \
             -t ghcr.io/${USERNAME}/portfolio:${ref} .
-
-      - name: Inspect builder
-        run: |
-          echo "Name:      ${{ steps.build.outputs.name }}"
-          echo "Endpoint:  ${{ steps.build.outputs.endpoint }}"
-          echo "Status:    ${{ steps.build.outputs.status }}"
-          echo "Flags:     ${{ steps.build.outputs.flags }}"
-          echo "Platforms: ${{ steps.build.outputs.platforms }}"
-          echo "All: ${{ steps.build.outputs }}"
 
       - name: Deploy with Nomad
         env:

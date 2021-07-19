@@ -33,7 +33,7 @@ job "feziv" {
 //			}
 
 			env {
-				ASSETS_LOCATION = "/local/static/public"
+//				ASSETS_LOCATION = "/local/static/public"
 				LISTEN = "${NOMAD_ADDR_feziv}"
 				timestamp = "[[timeNow]]"
 			}
@@ -43,7 +43,6 @@ job "feziv" {
 				network_mode = "host"
 			}
 		}
-
 	}
 }
 
