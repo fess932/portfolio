@@ -15,7 +15,8 @@ job "feziv" {
 				port = "feziv"
 				tags = [
 					"reproxy.enabled=1",
-					"reproxy.server=feziv.com,www.feziv.com" 
+					"reproxy.server=feziv.com,www.feziv.com",
+					"timestamp=[[timeNow]]"
 				]
 			}
 			// serve static files for feziv.com
@@ -32,7 +33,6 @@ job "feziv" {
 			}
 
 			env {
-				TIMESTAMP = [[ timeNow ]]
 				ASSETS_LOCATION = "/local/static/public"
 				LISTEN = "${NOMAD_ADDR_feziv}"
 			}
