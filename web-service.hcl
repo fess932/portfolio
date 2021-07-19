@@ -27,10 +27,10 @@ job "feziv" {
 
 			driver = "docker"
 
-			artifact {
-				source = "git::https://github.com/fess932/portfolio?ref=main"
-				destination = "local/static"
-			}
+//			artifact {
+//				source = "git::https://github.com/fess932/portfolio?ref=main"
+//				destination = "local/static"
+//			}
 
 			env {
 				ASSETS_LOCATION = "/local/static/public"
