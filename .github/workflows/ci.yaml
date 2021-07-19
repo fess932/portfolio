@@ -6,8 +6,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      NOMAD_ADDR: http://feziv.com:4646
+
 
     steps:
       - name: Checkout repo
@@ -29,9 +28,11 @@ jobs:
           docker buildx build --push \
             --build-arg GIT_BRANCH=${ref} \
             --platform linux/amd64 \
-            -t ghcr.io/${USERNAME}/rp:${ref} .
+            -t ghcr.io/${USERNAME}/portfolio:${ref} .
 
       - name: Deploy with Nomad
+        env:
+          NOMAD_ADDR: https://feziv.com:4646
         uses: docker://hashicorp/levant:latest
         with:
           args: levant deploy web-service.hcl
