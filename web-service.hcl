@@ -39,7 +39,7 @@ job "feziv" {
 			}
 
 			config {
-				image = "ghcr.io/umputun/reproxy"
+				image = "ghcr.io/fess932/portfolio:main"
 				network_mode = "host"
 			}
 		}
