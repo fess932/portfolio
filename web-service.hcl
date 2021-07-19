@@ -1,9 +1,9 @@
 job "feziv" {
 	datacenters = ["dc1"]
-
 	type = "service"
 
 	group "default" {
+
 		network { 
 			port "feziv" {
 				host_network = "private"
@@ -32,7 +32,7 @@ job "feziv" {
 			}
 
 			env {
-				CHANGE_ME = "kle"
+				TIMESTAMP = [[ timeNow ]]
 				ASSETS_LOCATION = "/local/static/public"
 				LISTEN = "${NOMAD_ADDR_feziv}"
 			}
@@ -41,8 +41,8 @@ job "feziv" {
 				image = "ghcr.io/umputun/reproxy"
 				network_mode = "host"
 			}
-
 		}
+
 	}
 }
 
