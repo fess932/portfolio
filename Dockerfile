@@ -12,10 +12,10 @@ RUN hugo
 #    version=${GIT_BRANCH}-$(date +%Y%m%dT%H:%M:%S) && \
 #    echo "version=$version" && \
 #    cd cmd/app && \
-#    go build -o /build/rp -ldflags "-X main.revision=${version} -s -w"
+#    go build -o /build/rp -ldfl ags "-X main.revision=${version} -s -w"
 
 FROM umputun/reproxy:latest
 
-ENV ASSETS_LOCATION = "/public"
+ENV ASSETS_LOCATION=/public
 COPY --from=backend /build/public /public
 WORKDIR /public
