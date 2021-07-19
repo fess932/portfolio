@@ -19,9 +19,9 @@ jobs:
 
       - name: build and deploy master image to ghcr.io
         env:
-          GITHUB_PACKAGE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          USERNAME: ${{ github.actor }}
-          GITHUB_REF: ${{ github.ref }}
+          GITHUB_PACKAGE_TOKEN: ${{secrets.GITHUB_TOKEN}}
+          USERNAME: ${{github.actor}}
+          GITHUB_REF: ${{github.ref}}
         run: |
           ref="$(echo ${GITHUB_REF} | cut -d'/' -f3)"
           echo GITHUB_REF - $ref
