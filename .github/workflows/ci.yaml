@@ -31,7 +31,7 @@ jobs:
 
       - name: Deploy with Nomad
         env:
-          NOMAD_ADDR: https://feziv.com:4646
+          NOMAD_ADDR: http://feziv.com:4646
         uses: docker://hashicorp/levant:latest
         with:
           args: levant deploy web-service.hcl
