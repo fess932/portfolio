@@ -15,7 +15,6 @@ RUN hugo
 #    go build -o /build/rp -ldfl ags "-X main.revision=${version} -s -w"
 
 FROM umputun/reproxy:latest
-
-ENV ASSETS_LOCATION=/public
 COPY --from=backend /build/public /public
+ENV ASSETS_LOCATION=/public
 WORKDIR /public
