@@ -13,6 +13,11 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v2
 
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          path: public/
+
       - name: Deploy with Nomad
         uses: docker://hashicorp/levant:latest
         with:
