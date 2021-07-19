@@ -16,7 +16,7 @@ job "feziv" {
 				tags = [
 					"reproxy.enabled=1",
 					"reproxy.server=feziv.com,www.feziv.com",
-					"timestamp=[[timeNow]]"
+//					"timestamp=[[timeNow]]"
 				]
 			}
 			// serve static files for feziv.com
@@ -28,13 +28,14 @@ job "feziv" {
 			driver = "docker"
 
 			artifact {
-				source = "git::https://github.com/fess932/portfolio"
+				source = "git::https://github.com/fess932/portfolio?ref=/heads/main"
 				destination = "local/static"
 			}
 
 			env {
 				ASSETS_LOCATION = "/local/static/public"
 				LISTEN = "${NOMAD_ADDR_feziv}"
+//				timestamp = "[[timeNow]]"
 			}
 
 			config {
