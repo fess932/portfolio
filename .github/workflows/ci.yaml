@@ -15,6 +15,7 @@ jobs:
       - name: set up Docker Buildx
         uses: docker/setup-buildx-action@v1
 
+
       - name: build and deploy master image to ghcr.io
         env:
           GITHUB_PACKAGE_TOKEN: ${{secrets.GITHUB_TOKEN}}
