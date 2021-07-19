@@ -16,7 +16,7 @@ job "feziv" {
 				tags = [
 					"reproxy.enabled=1",
 					"reproxy.server=feziv.com,www.feziv.com",
-//					"timestamp=[[timeNow]]"
+					"timestamp=[[timeNow]]"
 				]
 			}
 			// serve static files for feziv.com
@@ -35,7 +35,7 @@ job "feziv" {
 			env {
 				ASSETS_LOCATION = "/local/static/public"
 				LISTEN = "${NOMAD_ADDR_feziv}"
-//				timestamp = "[[timeNow]]"
+				timestamp = "[[timeNow]]"
 			}
 
 			config {
