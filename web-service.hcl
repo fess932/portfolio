@@ -32,6 +32,7 @@ job "feziv" {
 			}
 
 			env {
+				CHANGE_ME = uuidv4()
 				ASSETS_LOCATION = "/local/static/public"
 				LISTEN = "${NOMAD_ADDR_feziv}"
 			}
