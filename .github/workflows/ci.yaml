@@ -35,7 +35,7 @@ jobs:
       - name: Deploy with Nomad
         env:
           NOMAD_ADDR: http://feziv.com:4646
-          GITHUB_SHA: ${{github.sha}}
+#          GITHUB_SHA: ${{github.sha}}
         uses: docker://hashicorp/levant:latest
         with:
-          args: levant deploy -var 'GITHUB_SHA=${GITHUB_SHA}' web-service.hcl
+          args: levant deploy -var 'tag=${{github.sha}}' web-service.hcl
