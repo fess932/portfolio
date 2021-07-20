@@ -20,22 +20,15 @@ job "feziv" {
 				]
 			}
 			// serve static files for feziv.com
-
 			resources {
-        memory = 64
-      }
+				memory = 64
+		  }
 
 			driver = "docker"
 
-//			artifact {
-//				source = "git::https://github.com/fess932/portfolio?ref=main"
-//				destination = "local/static"
-//			}
-
 			env {
-				ASSETS_LOCATION = "/public"
+				//ASSETS_LOCATION = "/public"
 				LISTEN = "${NOMAD_ADDR_feziv}"
-				timestamp = "[[timeNow]]"
 			}
 
 			config {
