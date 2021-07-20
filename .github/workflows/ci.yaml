@@ -26,7 +26,7 @@ jobs:
           echo GITHUB_REF - $ref
           echo ${GITHUB_PACKAGE_TOKEN} | docker login ghcr.io -u ${USERNAME} --password-stdin
           docker buildx build --push \
-            --build-arg CI=github --build-arg GITHUB_SHA=${GITHUB_SHA} GIT_BRANCH=${ref} \
+            --build-arg CI=github --build-arg GITHUB_SHA=${GITHUB_SHA} --build-arg GIT_BRANCH=${ref} \
             --platform linux/amd64 \
             -t ghcr.io/${USERNAME}/portfolio:${ref} .
 
