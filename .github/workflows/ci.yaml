@@ -32,10 +32,15 @@ jobs:
             -t ghcr.io/${USERNAME}/portfolio:${GITHUB_SHA} \
             -t ghcr.io/${USERNAME}/portfolio:latest .
 
+      - name: Test variables
+        run: |
+          echo $GITHUB_SHA
+          echo GITHUB_REF
+
       - name: Deploy with Nomad
         env:
           NOMAD_ADDR: http://feziv.com:4646
-#          GITHUB_SHA: ${{github.sha}}
+          GITHUB_SHA: ${{github.sha}}
         uses: docker://hashicorp/levant:latest
         with:
           args: levant deploy -var 'tag=$GITHUB_SHA' web-service.hcl
