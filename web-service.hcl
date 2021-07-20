@@ -27,7 +27,6 @@ job "feziv" {
 			driver = "docker"
 
 			env {
-				//ASSETS_LOCATION = "/public"
 				LISTEN = "${NOMAD_ADDR_feziv}"
 			}
 
