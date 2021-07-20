@@ -28,7 +28,9 @@ jobs:
           docker buildx build --push \
             --build-arg CI=github --build-arg GITHUB_SHA=${GITHUB_SHA} --build-arg GIT_BRANCH=${ref} \
             --platform linux/amd64 \
-            -t ghcr.io/${USERNAME}/portfolio:${ref} .
+            -t ghcr.io/${USERNAME}/portfolio:${ref} \
+            -t ghcr.io/${USERNAME}/portfolio:${GITHUB_SHA} \
+            -t ghcr.io/${USERNAME}/portfolio:latest .
 
       - name: Deploy with Nomad
         env:
