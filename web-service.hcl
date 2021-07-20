@@ -39,7 +39,7 @@ job "feziv" {
 			}
 
 			config {
-				image = "ghcr.io/fess932/portfolio:main"
+				image = "ghcr.io/fess932/portfolio:[.GITHUB_SHA]"
 				network_mode = "host"
 			}
 		}
