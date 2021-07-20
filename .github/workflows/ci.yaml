@@ -20,12 +20,13 @@ jobs:
           GITHUB_PACKAGE_TOKEN: ${{secrets.GITHUB_TOKEN}}
           USERNAME: ${{github.actor}}
           GITHUB_REF: ${{github.ref}}
+          GITHUB_SHA: ${{github.sha}}
         run: |
           ref="$(echo ${GITHUB_REF} | cut -d'/' -f3)"
           echo GITHUB_REF - $ref
           echo ${GITHUB_PACKAGE_TOKEN} | docker login ghcr.io -u ${USERNAME} --password-stdin
           docker buildx build --push \
-            --build-arg GIT_BRANCH=${ref} \
+            --build-arg CI=github --build-arg GITHUB_SHA=${GITHUB_SHA} GIT_BRANCH=${ref} \
             --platform linux/amd64 \
             -t ghcr.io/${USERNAME}/portfolio:${ref} .
 
@@ -42,24 +43,3 @@ jobs:
     steps:
       - name: set up Docker Buildx
         uses: docker/setup-buildx-action@v1
-
-      - name: build and deploy master image to ghcr.io
-        env:
-          GITHUB_PACKAGE_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          USERNAME: ${{github.actor}}
-          GITHUB_REF: ${{github.ref}}
-        run: |
-          ref="$(echo ${GITHUB_REF} | cut -d'/' -f3)"
-          echo GITHUB_REF - $ref
-          echo ${GITHUB_PACKAGE_TOKEN} | docker login ghcr.io -u ${USERNAME} --password-stdin
-          docker buildx build --push \
-            --build-arg GIT_BRANCH=${ref} \
-            --platform linux/amd64 \
-            -t ghcr.io/${USERNAME}/portfolio:${ref} .
-
-      - name: Deploy with Nomad
-        env:
-          NOMAD_ADDR: http://feziv.com:4646
-        uses: docker://hashicorp/levant:latest
-        with:
-          args: levant deploy web-service.hcl
